@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {YoutubeService} from '../youtube.service';
 import {SafeUrl, DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-search-result',
@@ -16,7 +17,7 @@ export class SearchResultComponent implements OnInit {
   trustedDashboardUrl: SafeUrl;
   Url = '';
 
-  constructor(private youtubeService: YoutubeService,  private sanitizer: DomSanitizer) { }
+  constructor(private youtubeService: YoutubeService,  private sanitizer: DomSanitizer, private router: Router) { }
 
   ngOnInit() {
   }
@@ -27,6 +28,7 @@ export class SearchResultComponent implements OnInit {
     this.youtubeService.showSearchResult(input).subscribe((data: any) => {
       this.videos = data.items;
       //  console.log('searchResult' + this.videos);
+      this.router.navigate(['searchResult', 'q=' + input]);
       this.bool = true;
     });
   }

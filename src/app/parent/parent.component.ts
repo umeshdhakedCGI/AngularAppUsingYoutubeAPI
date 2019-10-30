@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-parent',
@@ -8,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class ParentComponent implements OnInit {
   title = 'YoutubeTrending';
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+  showplaylist() {
+    this.router.navigate(['/showPlaylist', 'myList']);
+  }
 
 }
