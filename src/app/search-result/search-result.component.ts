@@ -41,4 +41,19 @@ export class SearchResultComponent implements OnInit {
 
   }
 
+
+  addToList(id, titl, description, image) {
+    const link = 'https://www.youtube.com/watch?v=' + id;
+    const datas = {
+      "videoId": 1,
+      "videoLink": id,
+      "videoTitle": titl,
+      "videoDescription": description,
+      "videoImage": image,
+    };
+
+    this.youtubeService.savePlaylist(datas);
+
+  }
+
 }

@@ -42,6 +42,10 @@
 
         <!--      <p class="card-text">{{video.snippet.description}}</p>-->
 
+        <nav>
+          <button (click)="addToList(video.id.videoId,video.snippet.title,video.snippet.description,video.snippet.thumbnails.medium.url)">Add to Playlist</button>
+        </nav>
+
       </div>
     </div>
   </div>
