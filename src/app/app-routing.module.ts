@@ -17,7 +17,11 @@ const routes: Routes = [
   ]
   },
 
-  {path: 'showPlaylist', component: ShowPlaylistComponent},
+  {path: 'showPlaylist', component: ShowPlaylistComponent,
+    children: [
+      { path: 'playVideo/:videoId', component: PlayVideoModelComponent}
+    ]
+  },
 
   {path: 'searchResult/', redirectTo: '/showVideos', pathMatch: 'full'},
   {path: 'searchResult', redirectTo: '/showVideos', pathMatch: 'full'},

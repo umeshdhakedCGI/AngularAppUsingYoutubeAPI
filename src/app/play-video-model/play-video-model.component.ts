@@ -17,7 +17,7 @@ export class PlayVideoModelComponent implements OnInit {
   constructor( private sanitizer: DomSanitizer, private route: ActivatedRoute) { }
 
   ngOnInit() {
-
+    console.log('playvideomodel')
     this.route.paramMap.subscribe((params: ParamMap) => {
       const videoId = params.get('videoId');
 
