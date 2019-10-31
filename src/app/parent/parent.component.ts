@@ -8,14 +8,23 @@ import {Router} from '@angular/router';
 })
 export class ParentComponent implements OnInit {
   title = 'YoutubeTrending';
-
   constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  showplaylist() {
-    this.router.navigate(['/showPlaylist', 'myList']);
+
+
+  search(search) {
+    console.log(search);
+    this.router.navigate(['searchResult', search]);
+
+    setTimeout( () => {
+      console.log('why??');
+    }, 400 );
+
   }
+
+
 
 }

@@ -72,7 +72,7 @@ export class YoutubeService {
         alert('already added');
       }
 
-    }, 200);
+    }, 350);
 
 
   }

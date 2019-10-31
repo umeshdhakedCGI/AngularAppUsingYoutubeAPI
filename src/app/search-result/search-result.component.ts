@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {YoutubeService} from '../youtube.service';
 import {SafeUrl, DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
-import {Router} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search-result',
@@ -11,27 +11,43 @@ import {Router} from '@angular/router';
 export class SearchResultComponent implements OnInit {
   videos = [];
   bool = false;
-
+  s;
+  boolbox = false;
 
   iframeUrl;
   trustedDashboardUrl: SafeUrl;
   Url = '';
 
-  constructor(private youtubeService: YoutubeService,  private sanitizer: DomSanitizer, private router: Router) { }
+  constructor(private youtubeService: YoutubeService,  private sanitizer: DomSanitizer, private route: ActivatedRoute) {
+    route.params.subscribe(value => {
+      const q = this.route.snapshot.paramMap.get('search');
+      this.s = q;
+      console.log('q=' + q);
+
+      this.youtubeService.showSearchResult(q).subscribe((data: any) => {
+          this.videos = data.items;
+          this.bool = true;
+        });
+
+    });
+
+  }
 
   ngOnInit() {
   }
 
 
-  search(input) {
-    console.log(input);
-    this.youtubeService.showSearchResult(input).subscribe((data: any) => {
-      this.videos = data.items;
-      //  console.log('searchResult' + this.videos);
-      this.router.navigate(['searchResult', 'q=' + input]);
-      this.bool = true;
-    });
-  }
+
+  // search(input) {
+  //   console.log(input);
+  //   this.youtubeService.showSearchResult(input).subscribe((data: any) => {
+  //     this.videos = data.items;
+  //     //  console.log('searchResult' + this.videos);
+  //   //  this.router.navigate(['searchResult', 'q=' + input]);
+  //     this.bool = true;
+  //     this.s = ':' + input;
+  //   });
+  // }
 
   sendDetails(id) {
     this.Url = 'https://www.youtube.com/embed/' + id;
